@@ -1,0 +1,17 @@
+# OS junk
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Never commit anything resembling a credential
+.env
+.env.*
+*.pem
+*.key

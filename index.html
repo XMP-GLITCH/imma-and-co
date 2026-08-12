@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imma & Co Jewelry</title>
+<meta name="description" content="Imma &amp; Co — jewelry making and retail. Browse on TikTok or order directly on WhatsApp. Customized pieces available on request.">
+<meta name="theme-color" content="#f6f2ec">
+
+<!-- Share preview for WhatsApp / TikTok / Instagram / Facebook.
+     REPLACE https://your-domain.com below with the real URL once this page is live.
+     og:url and og:image must be ABSOLUTE https URLs — relative paths render no preview.
+     share-preview.jpg should be 1200x630, JPG or PNG (not SVG), under ~300KB for WhatsApp. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Imma &amp; Co Jewelry">
+<meta property="og:url" content="https://your-domain.com/">
+<meta property="og:title" content="Imma &amp; Co Jewelry">
+<meta property="og:description" content="Jewelry making and retail. Order on WhatsApp — customized pieces available on request.">
+<meta property="og:image" content="https://your-domain.com/share-preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Imma &amp; Co jewelry">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Imma &amp; Co Jewelry">
+<meta name="twitter:description" content="Jewelry making and retail. Order on WhatsApp — customized pieces available on request.">
+<meta name="twitter:image" content="https://your-domain.com/share-preview.jpg">
+
+<!-- Inline SVG favicon: the clover mark simplified so it reads at 16px. No extra file needed. -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231c1712'/><circle cx='32' cy='32' r='19' fill='%23d9a6a6'/><circle cx='68' cy='32' r='19' fill='%23e3c47a'/><circle cx='68' cy='68' r='19' fill='%23d9a6a6'/><circle cx='32' cy='68' r='19' fill='%23e3c47a'/><circle cx='50' cy='50' r='10' fill='%23c9a24a'/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --marble-a:#f6f2ec;
+    --marble-b:#efe8de;
+    --ink:#1c1712;
+    --gold:#c9a24a;
+    --gold-bright:#e3c47a;
+    --clover:#d9a6a6;
+    --clover-deep:#b9797f;
+    --line: rgba(28,23,18,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth; height:100%;}
+  body{
+    background:var(--marble-a);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    /* Locked to the device viewport — the page never scrolls.
+       dvh tracks the iOS address bar; vh is the fallback for older browsers. */
+    height:100vh;
+    height:100dvh;
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* marble texture */
+  .marble{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    background:
+      radial-gradient(ellipse 120% 60% at 15% 0%, rgba(0,0,0,0.05), transparent 55%),
+      radial-gradient(ellipse 90% 50% at 100% 30%, rgba(0,0,0,0.04), transparent 60%),
+      linear-gradient(120deg, transparent 40%, rgba(28,23,18,0.035) 41%, transparent 43%),
+      linear-gradient(35deg, transparent 60%, rgba(28,23,18,0.03) 61%, transparent 64%),
+      linear-gradient(160deg, var(--marble-a), var(--marble-b) 60%, var(--marble-a));
+    pointer-events:none;
+  }
+
+  .wrap{
+    position:relative;
+    z-index:1;
+    max-width:460px;
+    margin:0 auto;
+    height:100%;
+    overflow:hidden;
+    /* Fluid vertical rhythm: every gap shrinks with the screen so the layout
+       compresses to fit instead of being cropped. Fixed value first as the
+       fallback, clamp second for browsers that understand dvh. */
+    padding:56px 26px 40px;
+    padding:clamp(24px, 5.5dvh, 56px) 26px clamp(16px, 3dvh, 40px);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  /* signature clover mark */
+  .clover-mark{
+    width:64px;
+    height:64px;
+    width:clamp(42px, 8.5dvh, 64px);
+    height:clamp(42px, 8.5dvh, 64px);
+    flex-shrink:0;
+    margin-bottom:22px;
+    margin-bottom:clamp(10px, 2.4dvh, 22px);
+    opacity:0;
+    transform:scale(0.4) rotate(-25deg);
+    animation:bloom 1.1s cubic-bezier(.2,.9,.25,1) 0.15s forwards;
+  }
+  @keyframes bloom{
+    to{opacity:1; transform:scale(1) rotate(0deg);}
+  }
+  .clover-mark svg{width:100%; height:100%;}
+
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    font-size:10.5px;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--clover-deep);
+    font-weight:500;
+    margin-top:8px;
+    opacity:0;
+    animation:fadeUp 0.7s ease 0.7s forwards;
+  }
+
+  h1{
+    font-family:'Jost', sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    font-size:34px;
+    font-size:clamp(25px, 4.6dvh, 34px);
+    line-height:1.15;
+    margin-top:0;
+    color:var(--ink);
+    opacity:0;
+    animation:fadeUp 0.8s ease 0.5s forwards;
+  }
+
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .divider{
+    width:36px;
+    height:1px;
+    background:var(--gold);
+    flex-shrink:0;
+    margin:28px 0 30px;
+    margin:clamp(14px, 3dvh, 28px) 0 clamp(15px, 3.2dvh, 30px);
+    opacity:0;
+    animation:fadeUp 0.6s ease 0.9s forwards;
+  }
+
+  /* links */
+  .links{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    gap:clamp(9px, 1.8dvh, 14px);
+  }
+
+  .link-card{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    width:100%;
+    padding:18px 22px;
+    padding:clamp(13px, 2.3dvh, 18px) 22px;
+    background:var(--ink);
+    border-radius:16px;
+    text-decoration:none;
+    color:#f4ece2;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(14px);
+    animation:fadeUp 0.6s ease forwards;
+    transition:transform 0.35s cubic-bezier(.2,.8,.25,1), box-shadow 0.35s ease;
+    box-shadow:0 1px 0 rgba(255,255,255,0.04) inset;
+  }
+  .link-card:nth-child(1){animation-delay:1.05s;}
+  .link-card:nth-child(2){animation-delay:1.18s;}
+  .link-card:nth-child(3){animation-delay:1.31s;}
+  .link-card:nth-child(4){animation-delay:1.44s;}
+
+  .link-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:16px;
+    padding:1px;
+    background:linear-gradient(120deg, var(--gold-bright), transparent 40%, transparent 60%, var(--gold));
+    /* Both shorthands first — the `mask` shorthand resets mask-composite,
+       so the composite properties must follow it, not precede it. */
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+    opacity:0.55;
+    pointer-events:none;
+  }
+
+  .link-card:active{transform:scale(0.97) translateY(0);}
+
+  .link-card:focus-visible{
+    outline:2px solid var(--ink);
+    outline-offset:3px;
+  }
+  @media (hover:hover){
+    .link-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 24px rgba(28,23,18,0.18);
+    }
+  }
+
+  .icon{
+    width:22px;
+    height:22px;
+    flex-shrink:0;
+    color:var(--gold-bright);
+  }
+  .icon svg{width:100%; height:100%;}
+
+  .link-text{flex:1; min-width:0;}
+  .link-title{
+    font-family:'Jost', sans-serif;
+    font-size:15px;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+  .link-sub{
+    font-family:'Cormorant Garamond', serif;
+    font-size:13px;
+    color:#c9bfae;
+    margin-top:1px;
+  }
+
+  .arrow{
+    width:14px;
+    height:14px;
+    color:var(--clover);
+    flex-shrink:0;
+  }
+
+  /* ── Intent sheet ──────────────────────────────────────────────
+     Routed by :target on #choose, so it needs no JavaScript and the
+     phone's back button closes it instead of leaving the page.
+     Kept visibility:hidden (not just transparent) while closed so the
+     links inside stay out of the keyboard tab order. */
+  .sheet{
+    position:fixed;
+    inset:0;
+    z-index:10;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity 0.3s ease, visibility 0s linear 0.3s;
+  }
+  .sheet:target{
+    opacity:1;
+    visibility:visible;
+    transition:opacity 0.3s ease, visibility 0s;
+  }
+
+  .sheet-scrim{
+    position:absolute;
+    inset:0;
+    display:block;
+    background:rgba(28,23,18,0.5);
+  }
+
+  .sheet-panel{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    max-width:460px;
+    margin:0 auto;
+    background:#faf7f2;
+    border-radius:26px 26px 0 0;
+    padding:12px 22px calc(24px + env(safe-area-inset-bottom));
+    box-shadow:0 -14px 44px rgba(28,23,18,0.24);
+    max-height:88vh;
+    max-height:88dvh;
+    overflow-y:auto;
+    transform:translateY(100%);
+    transition:transform 0.4s cubic-bezier(.2,.9,.25,1);
+  }
+  .sheet:target .sheet-panel{transform:translateY(0);}
+
+  .sheet-grab{
+    width:38px;
+    height:4px;
+    border-radius:999px;
+    background:rgba(28,23,18,0.16);
+    margin:0 auto 18px;
+  }
+  .sheet-title{
+    font-family:'Jost', sans-serif;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    text-align:center;
+    color:var(--ink);
+  }
+  .sheet-sub{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:14px;
+    text-align:center;
+    color:#5a5148;
+    margin-top:4px;
+    margin-bottom:20px;
+  }
+
+  .option{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px 18px;
+    margin-bottom:10px;
+    background:var(--ink);
+    border-radius:14px;
+    text-decoration:none;
+    color:#f4ece2;
+    transition:transform 0.3s cubic-bezier(.2,.8,.25,1), box-shadow 0.3s ease;
+  }
+  .option:active{transform:scale(0.975);}
+  @media (hover:hover){
+    .option:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(28,23,18,0.18);}
+  }
+  .option-icon{
+    width:20px;
+    height:20px;
+    flex-shrink:0;
+    color:var(--gold-bright);
+  }
+  .option-icon svg{width:100%; height:100%;}
+  .option-text{flex:1; min-width:0;}
+  .option-title{
+    font-size:14px;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+  .option-desc{
+    font-family:'Cormorant Garamond', serif;
+    font-size:13px;
+    line-height:1.35;
+    color:#c9bfae;
+    margin-top:2px;
+  }
+
+  /* Close button is pointer-device only — on touch the sheet is dismissed
+     by tapping the backdrop or using the back button, so an X would just
+     be a small target competing with the options. */
+  .sheet-close{
+    display:none;
+    position:absolute;
+    top:12px;
+    right:14px;
+    width:34px;
+    height:34px;
+    align-items:center;
+    justify-content:center;
+    border-radius:999px;
+    color:#6b6154;
+    text-decoration:none;
+    transition:background 0.25s ease, color 0.25s ease;
+  }
+  .sheet-close svg{width:15px; height:15px;}
+  @media (hover:hover){
+    .sheet-close{display:flex;}
+    .sheet-close:hover{background:rgba(28,23,18,0.07); color:var(--ink);}
+  }
+
+  .option:focus-visible,
+  .sheet-close:focus-visible{
+    outline:2px solid var(--ink);
+    outline-offset:3px;
+  }
+
+  /* location card, echoes flyer's black rounded block */
+  .location{
+    width:100%;
+    flex-shrink:0;
+    margin-top:26px;
+    margin-top:clamp(13px, 2.8dvh, 26px);
+    padding:16px 22px;
+    padding:clamp(11px, 1.9dvh, 16px) 22px;
+    border-radius:16px;
+    background:transparent;
+    border:1px solid var(--line);
+    text-align:center;
+    opacity:0;
+    animation:fadeUp 0.6s ease 1.6s forwards;
+  }
+  .location-title{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:15px;
+    color:#5a5148;
+  }
+  .location-sub{
+    font-family:'Jost', sans-serif;
+    font-size:11.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--clover-deep);
+    margin-top:4px;
+  }
+
+  footer{
+    margin-top:auto;
+    flex-shrink:0;
+    padding-top:44px;
+    padding-top:clamp(14px, 3.4dvh, 44px);
+    font-size:10px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:#a89d8c;
+    opacity:0;
+    animation:fadeUp 0.6s ease 1.8s forwards;
+  }
+
+  /* Safety valve. Below ~600px tall (phones in landscape, tiny windows) the
+     content cannot compress far enough to fit, and a hard crop would hide the
+     WhatsApp button entirely. Scrolling comes back only in that case —
+     every normal portrait phone is 640px+ and stays locked to the viewport. */
+  @media (max-height: 600px){
+    body{height:auto; min-height:100vh; min-height:100dvh; overflow:auto;}
+    .wrap{height:auto; min-height:100vh; min-height:100dvh; overflow:visible;}
+  }
+
+  /* Scoped to the elements that actually animate in. A blanket `* { opacity:1 }`
+     would also force .link-card::before from 0.55 to full, giving motion-sensitive
+     users a harsher gold border than everyone else — same design, just no motion. */
+  @media (prefers-reduced-motion: reduce){
+    .clover-mark,
+    .eyebrow,
+    h1,
+    .divider,
+    .link-card,
+    .location,
+    footer{
+      animation:none;
+      opacity:1;
+      transform:none;
+    }
+    .link-card{transition:box-shadow 0.2s ease;}
+    .link-card:hover,
+    .link-card:active,
+    .option:hover,
+    .option:active{transform:none;}
+    /* Sheet still appears/disappears, it just doesn't slide. */
+    .sheet-panel{transition:none;}
+    .sheet:target .sheet-panel,
+    .sheet-panel{transform:none;}
+    .option{transition:box-shadow 0.2s ease;}
+  }
+</style>
+</head>
+<body>
+
+<div class="marble"></div>
+
+<div class="wrap">
+
+  <div class="clover-mark">
+    <svg viewBox="0 0 100 100" fill="none">
+      <g>
+        <path d="M50 50 C50 32 38 22 26 22 C14 22 6 32 6 44 C6 56 16 64 26 64 C34 64 42 58 50 50 Z" fill="#d9a6a6"/>
+        <path d="M50 50 C68 50 78 38 78 26 C78 14 68 6 56 6 C44 6 36 16 36 26 C36 34 42 42 50 50 Z" fill="#e3c47a" opacity="0.9"/>
+        <path d="M50 50 C50 68 62 78 74 78 C86 78 94 68 94 56 C94 44 84 36 74 36 C66 36 58 42 50 50 Z" fill="#d9a6a6"/>
+        <path d="M50 50 C32 50 22 62 22 74 C22 86 32 94 44 94 C56 94 64 84 64 74 C64 66 58 58 50 50 Z" fill="#e3c47a" opacity="0.9"/>
+        <circle cx="50" cy="50" r="9" fill="#c9a24a"/>
+      </g>
+    </svg>
+  </div>
+
+  <h1>Imma &amp; Co</h1>
+  <p class="eyebrow">Jewelry Making &amp; Retail</p>
+
+  <div class="divider"></div>
+
+  <div class="links">
+
+    <a class="link-card" href="https://www.tiktok.com/@immaandco" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82c-.9-.88-1.4-2.07-1.4-3.32h-3.13v13.6a2.7 2.7 0 1 1-1.9-2.58V10.4a5.85 5.85 0 1 0 5.03 5.79V9.4a6.9 6.9 0 0 0 4.05 1.3V7.6a3.86 3.86 0 0 1-2.65-1.78z"/></svg>
+      </span>
+      <span class="link-text">
+        <div class="link-title">TikTok</div>
+        <div class="link-sub">@immaandco</div>
+      </span>
+      <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></span>
+    </a>
+
+    <!-- Opens the intent sheet rather than WhatsApp directly. The actual
+         wa.me links (with their prefilled messages) live in #choose below. -->
+    <a class="link-card" href="#choose" aria-haspopup="dialog">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.05-1.36A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3 .8.8-2.93-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.24-.12-1.44-.7-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.18-.7-.62-1.18-1.4-1.32-1.64-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.34-.76-1.83-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28z"/></svg>
+      </span>
+      <span class="link-text">
+        <div class="link-title">Order on WhatsApp</div>
+        <div class="link-sub">+237 674 799 686</div>
+      </span>
+      <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></span>
+    </a>
+
+  </div>
+
+  <div class="location">
+    <div class="location-title">Customized pieces available on request</div>
+    <div class="location-sub">Message us on WhatsApp for pricing</div>
+  </div>
+
+  <footer>Imma &amp; Co Jewelry</footer>
+
+</div>
+
+<!-- ── Intent sheet ──────────────────────────────────────────────
+     Opened by the WhatsApp card (href="#choose"), closed by the scrim,
+     the Cancel link, or the phone's back button.
+     Each option opens the SAME number with a different prefilled message.
+     To edit a message: update the comment AND re-encode the ?text= value.
+     Escapes used: space %20  & %26  ' %27  : %3A  . is safe
+     Wave emoji = %F0%9F%91%8B.  The & in "Imma & Co" must stay %26 —
+     a literal & ends the query string and truncates the message. -->
+<div class="sheet" id="choose" role="dialog" aria-labelledby="sheet-title">
+  <a class="sheet-scrim" href="#" aria-label="Close"></a>
+  <div class="sheet-panel">
+
+    <a class="sheet-close" href="#" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </a>
+
+    <div class="sheet-grab"></div>
+    <div class="sheet-title" id="sheet-title">What are you looking for?</div>
+    <div class="sheet-sub">Pick one and WhatsApp opens with your message ready</div>
+
+    <!-- "Hi Imma & Co 👋 I'd like to ask about a piece. Here's the one I'm interested in:" -->
+    <a class="option" href="https://wa.me/237674799686?text=Hi%20Imma%20%26%20Co%20%F0%9F%91%8B%20I%27d%20like%20to%20ask%20about%20a%20piece.%20Here%27s%20the%20one%20I%27m%20interested%20in%3A" target="_blank" rel="noopener">
+      <span class="option-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a7.5 7.5 0 0 1-7.5 7.5H8l-4.5 3V11.5A7.5 7.5 0 0 1 11 4h2.5a7.5 7.5 0 0 1 7.5 7.5z"/></svg>
+      </span>
+      <span class="option-text">
+        <div class="option-title">Just inquiring</div>
+        <div class="option-desc">Ask about a piece, pricing or availability</div>
+      </span>
+      <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
+    </a>
+
+    <!-- "Hi Imma & Co 👋 I'd like to customize one of your pieces. Here's the piece and what I'd like changed:" -->
+    <a class="option" href="https://wa.me/237674799686?text=Hi%20Imma%20%26%20Co%20%F0%9F%91%8B%20I%27d%20like%20to%20customize%20one%20of%20your%20pieces.%20Here%27s%20the%20piece%20and%20what%20I%27d%20like%20changed%3A" target="_blank" rel="noopener">
+      <span class="option-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L20 8l-4-4L4 16v4z"/><path d="M14 6l4 4"/></svg>
+      </span>
+      <span class="option-text">
+        <div class="option-title">Customized jewelry</div>
+        <div class="option-desc">One of our pieces, personalized for you</div>
+      </span>
+      <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
+    </a>
+
+    <!-- "Hi Imma & Co 👋 I'd like a handmade piece made from scratch. Here's what I have in mind:" -->
+    <a class="option" href="https://wa.me/237674799686?text=Hi%20Imma%20%26%20Co%20%F0%9F%91%8B%20I%27d%20like%20a%20handmade%20piece%20made%20from%20scratch.%20Here%27s%20what%20I%20have%20in%20mind%3A" target="_blank" rel="noopener">
+      <span class="option-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg>
+      </span>
+      <span class="option-text">
+        <div class="option-title">Handmade custom piece</div>
+        <div class="option-desc">Made from scratch to your own design</div>
+      </span>
+      <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
+    </a>
+
+  </div>
+</div>
+
+</body>
+</html>
