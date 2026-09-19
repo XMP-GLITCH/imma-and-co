@@ -12,7 +12,8 @@ JavaScript. The only external request is the Google Fonts stylesheet
 
 ## Structure
 
-- **Links** — TikTok, and a WhatsApp button that opens an intent sheet
+- **Links** — the Koraa storefront, TikTok, and a WhatsApp button that opens an
+  intent sheet
 - **Intent sheet** — three options, each opening WhatsApp with a different
   prefilled message so the first thing you receive says what the customer wants
 - **Viewport lock** — the page is pinned to the device height and never
