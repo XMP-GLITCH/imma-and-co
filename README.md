@@ -14,7 +14,11 @@ JavaScript. The only external request is the Google Fonts stylesheet
 
 - **Links** — the Koraa storefront, a two-up row of TikTok and Instagram, and a
   WhatsApp button that opens an intent sheet
-- **Two-up social row** — TikTok and Instagram share one line. As four
+- **Two-up social row** — TikTok and Instagram share one line. The two handles
+  differ only by a trailing underscore (`@immaandco` on TikTok, `@immaandco_`
+  on Instagram), so the paired card must never ellipsise it — that one
+  character is what says which account it is. The icon, gap and padding are
+  narrowed there to keep it whole at 320px. As four
   full-width cards the footer was clipped below 667px of viewport height, and
   the page is `overflow:hidden`, so there is no scrolling down to reach it.
   Adding a fifth destination needs the same treatment or a taller layout.
