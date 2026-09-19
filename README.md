@@ -12,8 +12,12 @@ JavaScript. The only external request is the Google Fonts stylesheet
 
 ## Structure
 
-- **Links** — the Koraa storefront, TikTok, and a WhatsApp button that opens an
-  intent sheet
+- **Links** — the Koraa storefront, a two-up row of TikTok and Instagram, and a
+  WhatsApp button that opens an intent sheet
+- **Two-up social row** — TikTok and Instagram share one line. As four
+  full-width cards the footer was clipped below 667px of viewport height, and
+  the page is `overflow:hidden`, so there is no scrolling down to reach it.
+  Adding a fifth destination needs the same treatment or a taller layout.
 - **Intent sheet** — three options, each opening WhatsApp with a different
   prefilled message so the first thing you receive says what the customer wants
 - **Viewport lock** — the page is pinned to the device height and never
